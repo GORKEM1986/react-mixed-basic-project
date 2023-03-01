@@ -11,7 +11,7 @@ function App() {
   const dec = () => {
     if (count > 0) {
       setCount(count - 1);
-      if (count % 2 == 0) {
+      if (count % 2 === 0) {
         setText(`${count - 1} tek sayıdır`);
       } else {
         setText(`${count - 1} çift sayıdır`);
@@ -22,24 +22,23 @@ function App() {
   const inc = () => {
     if (count < 20) {
       setCount(count + 1);
-      if (count % 2 == 0) {
+      if (count % 2 === 0) {
         setText(`${count + 1} tek sayıdır`);
       } else {
         setText(`${count + 1} cift sayıdır`);
       }
     }
   };
-  
-  const [veri, setVeri] = useState("")
-  const [id, setId] = useState(1)
+
+  const [veri, setVeri] = useState("");
+  const [id, setId] = useState(1);
 
   useEffect(() => {
-    axios.get("https://jsonplaceholder.typicode.com/posts")
-    .then(res => setVeri(res.data[id].title))
-    .catch(err => console.log(err)
-    )
-  }, [veri, id])
-  
+    axios
+      .get("https://jsonplaceholder.typicode.com/posts")
+      .then((res) => setVeri(res.data[id].title))
+      .catch((err) => console.log(err));
+  }, [veri, id]);
 
   return (
     <div className="container text-center mt-5">
@@ -54,19 +53,16 @@ function App() {
       <br />
       <br />
 
-      <Counter/>
-      <Background/>
-
+      <Counter />
+      <Background />
 
       <h1 className="bg-success">4.Step Axios Veri Cekme</h1>
 
       <h1>{veri}</h1>
       <p>
         <h5>sayı gir</h5>
-        <input type="text" value={id} onChange={e => setId(e.target.value)} />
+        <input type="text" value={id} onChange={(e) => setId(e.target.value)} />
       </p>
-
-    
     </div>
   );
 }
